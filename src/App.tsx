@@ -12,11 +12,17 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { useCounterStore } from "./modules/common/stores/counter.store";
+import { Snackbar } from "@mui/material";
 
 function TemporaryDrawer() {
+  const { increase } = useCounterStore();
+
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
+    if (newOpen) increase();
+
     setOpen(newOpen);
   };
 
@@ -34,7 +40,9 @@ function TemporaryDrawer() {
           </ListItem>
         ))}
       </List>
+
       <Divider />
+
       <List>
         {["All mail", "Trash", "Spam"].map((text, index) => (
           <ListItem key={text} disablePadding>
@@ -53,6 +61,7 @@ function TemporaryDrawer() {
   return (
     <div>
       <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+      <CounterIncreaser />
       <Drawer open={open} onClose={toggleDrawer(false)}>
         {DrawerList}
       </Drawer>
@@ -60,8 +69,28 @@ function TemporaryDrawer() {
   );
 }
 
+function CounterIncreaser() {
+  const increase = useCounterStore((state) => state.increase);
+
+  return <Button onClick={increase}>Increase</Button>;
+}
+
 function App() {
-  return <TemporaryDrawer />;
+  const counter = useCounterStore((state) => state.count);
+
+  return (
+    <>
+      <TemporaryDrawer />
+      <Box sx={{ width: 500 }}>
+        <Snackbar
+          open={true} // Always open
+          message={counter} // Text inside the Snackbar
+          autoHideDuration={null} // Prevent auto-hide
+          anchorOrigin={{ vertical: "bottom", horizontal: "right" }} // Position at bottom right
+        />
+      </Box>
+    </>
+  );
 }
 
 export default App;
