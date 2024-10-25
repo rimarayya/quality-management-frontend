@@ -46,6 +46,10 @@
 			"npm run format",
 			"npm run lint"
 		],
+		"*/**/*.tsx": [
+			"npm run format",
+			"npm run lint"
+		],
 		"*/**/*.json": [
 			"npm run format"
 		]
