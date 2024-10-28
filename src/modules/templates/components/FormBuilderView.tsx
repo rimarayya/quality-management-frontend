@@ -1,6 +1,8 @@
-import { Box } from '@mui/material';
+import { Box, Switch } from '@mui/material';
+import { useThemeStore } from '../../common/stores/themeStore';
 
 export default function FormBuilderView() {
+	const { isLight, toggleTheme } = useThemeStore();
 	return (
 		<Box
 			sx={{
@@ -14,7 +16,7 @@ export default function FormBuilderView() {
 				},
 			}}
 		>
-			Form builder view
+			<Switch color="default" onChange={toggleTheme} checked={!isLight} />
 		</Box>
 	);
 }

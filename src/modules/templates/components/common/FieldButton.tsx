@@ -22,21 +22,48 @@ export default function FieldButton({
 	return (
 		<Button
 			variant="outlined"
-			sx={{
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-				height: height,
-				width: '100%',
-				cursor: 'pointer',
-				borderRadius: 1,
-				borderColor: 'divider',
-				boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.12)',
-				'&:hover': {
-					backgroundColor: hoverColor,
-					transition: 'background-color 0.3s ease-in-out',
-				},
-			}}
+			// sx={{
+			// 	display: 'flex',
+			// 	justifyContent: 'center',
+			// 	alignItems: 'center',
+			// 	height: height,
+			// 	width: '100%',
+			// 	cursor: 'pointer',
+			// 	borderRadius: 1,
+			// 	borderColor: 'divider',
+			// 	boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.12)',
+			// 	'&:hover': {
+			// 		backgroundColor: hoverColor,
+			// 		transition: 'background-color 0.3s ease-in-out',
+			// 	},
+			// }}
+			sx={[
+				(theme) => ({
+					color: mainColor,
+					width: '100%',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+					height: height,
+					cursor: 'pointer',
+					borderRadius: 1,
+					borderColor: 'divider',
+					boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.12)',
+					backgroundColor: 'white',
+					...theme.applyStyles('dark', {
+						backgroundColor: '#121212',
+						color: 'white',
+					}),
+					'&:hover': {
+						backgroundColor: hoverColor,
+						transition: 'background-color 0.3s ease-in-out',
+						...theme.applyStyles('dark', {
+							backgroundColor: '#222222',
+							transition: 'background-color 0.3s ease-in-out',
+						}),
+					},
+				}),
+			]}
 		>
 			<Box
 				sx={{
@@ -44,7 +71,17 @@ export default function FieldButton({
 					width: 100,
 				}}
 			>
-				<Icon sx={{ fontSize: iconSize, color: mainColor }} />
+				<Icon
+					sx={[
+						(theme) => ({
+							color: mainColor,
+							fontSize: iconSize,
+							...theme.applyStyles('dark', {
+								color: 'white',
+							}),
+						}),
+					]}
+				/>
 				<Box sx={{ fontSize: 13, textTransform: 'capitalize' }}>
 					{text}
 				</Box>
