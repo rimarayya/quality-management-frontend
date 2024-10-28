@@ -1,4 +1,4 @@
-import { createTheme, CssBaseline } from '@mui/material';
+import { colors, createTheme, CssBaseline } from '@mui/material';
 import AppRoutes from './modules/app/AppRoutes';
 import { ThemeProvider } from '@emotion/react';
 
@@ -22,6 +22,12 @@ const theme = createTheme({
 			xl2: 1536,
 			xl3: 1720,
 			xl4: 1839,
+		},
+	},
+	palette: {
+		primary: {
+			main: colors.grey[800],
+			dark: colors.grey[100],
 		},
 	},
 });

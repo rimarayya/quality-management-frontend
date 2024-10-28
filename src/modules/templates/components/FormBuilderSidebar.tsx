@@ -1,38 +1,47 @@
 import { Box, Grid2 as Grid } from '@mui/material';
-import TextFieldCard from './fields-cards/TextFieldCard';
-import NumberFieldCard from './fields-cards/NumberFieldCard';
-import BooleanFieldCard from './fields-cards/BooleanFieldCard';
-import DateFieldCard from './fields-cards/DateFieldCard';
-import TimeFieldCard from './fields-cards/TimeFieldCard';
-import DateTimeFieldCard from './fields-cards/DateTimeFieldCard';
-import EnumFieldCard from './fields-cards/EnumFieldCard';
-import ReferenceFieldCard from './fields-cards/ReferenceFieldCard';
+import TextFieldButton from './fields-cards/TextFieldButton';
+import NumberFieldButton from './fields-cards/NumberFieldButton';
+import BooleanFieldButton from './fields-cards/BooleanFieldButton';
+import DateFieldButton from './fields-cards/DateFieldButton';
+import TimeFieldButton from './fields-cards/TimeFieldButton';
+import DateTimeFieldButton from './fields-cards/DateTimeFieldButton';
+import EnumFieldButton from './fields-cards/EnumFieldButton';
+import ReferenceFieldButton from './fields-cards/ReferenceFieldButton';
 
-export default function FormBuilderSection() {
-	const Cards = [
-		TextFieldCard,
-		NumberFieldCard,
-		BooleanFieldCard,
-		DateFieldCard,
-		TimeFieldCard,
-		DateTimeFieldCard,
-		EnumFieldCard,
-		ReferenceFieldCard,
+export default function FormBuilderSidebar() {
+	const Button = [
+		TextFieldButton,
+		NumberFieldButton,
+		BooleanFieldButton,
+		DateFieldButton,
+		TimeFieldButton,
+		DateTimeFieldButton,
+		EnumFieldButton,
+		ReferenceFieldButton,
 	];
 
 	return (
 		<Box
 			sx={{
 				height: '100vh',
-				padding: 4,
+				padding: 3,
 				borderLeft: 1,
 				borderLeftColor: 'divider',
 			}}
 		>
-			<Grid container spacing={2}>
-				{Cards.map((Card, i) => (
+			<Box
+				sx={{
+					paddingBottom: 2,
+					fontSize: 20,
+					fontWeight: 'bold',
+				}}
+			>
+				Form elements
+			</Box>
+			<Grid container spacing={1}>
+				{Button.map((Button, i) => (
 					<Grid size={6} key={i}>
-						<Card />
+						<Button height={115} iconSize={45} />
 					</Grid>
 				))}
 			</Grid>
