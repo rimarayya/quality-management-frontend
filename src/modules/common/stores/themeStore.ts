@@ -6,6 +6,6 @@ interface ICounterStore {
 }
 
 export const useThemeStore = create<ICounterStore>((set) => ({
-	isLight: false,
+	isLight: true,
 	toggleTheme: () => set((state) => ({ isLight: !state.isLight })),
 }));
