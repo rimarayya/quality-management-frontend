@@ -29,6 +29,16 @@ export type FieldTypeMappingType = {
 	[FieldTypeEnum.Reference]: string;
 };
 
+export type FieldType =
+	| NumberFieldObj
+	| BooleanFieldObj
+	| DateFieldObj
+	| DatetimeFieldObj
+	| TimeFieldObj
+	| EnumFieldObj
+	| ReferenceFieldObj
+	| StringFieldObj;
+
 export interface BaseFieldObj<type extends FieldTypeEnum> {
 	type: type;
 
@@ -43,7 +53,7 @@ export interface BaseFieldObj<type extends FieldTypeEnum> {
 
 export interface NumberFieldObj extends BaseFieldObj<FieldTypeEnum.Number> {}
 export interface StringFieldObj extends BaseFieldObj<FieldTypeEnum.String> {}
-export interface BooleanFieldObj extends BaseFieldObj<FieldTypeEnum.String> {}
+export interface BooleanFieldObj extends BaseFieldObj<FieldTypeEnum.Boolean> {}
 export interface DateFieldObj extends BaseFieldObj<FieldTypeEnum.Date> {}
 export interface TimeFieldObj extends BaseFieldObj<FieldTypeEnum.Time> {}
 export interface DatetimeFieldObj

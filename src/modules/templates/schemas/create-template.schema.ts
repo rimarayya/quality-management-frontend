@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import { CreateTemplateDto } from '../types/template.dtos';
 
-const creatTemplateSchema = Joi.object<CreateTemplateDto>({
+const createTemplateSchema = Joi.object<CreateTemplateDto>({
 	name: Joi.string()
 		.pattern(/^[a-zA-Z ]+$/)
 		.required()
@@ -27,4 +27,4 @@ const creatTemplateSchema = Joi.object<CreateTemplateDto>({
 	}),
 });
 
-export default creatTemplateSchema;
+export default createTemplateSchema;
