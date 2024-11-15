@@ -1,5 +1,5 @@
 import { Box, Grid2 as Grid } from '@mui/material';
-import { FieldTypeEnum } from '../types/field.types';
+import { FieldTypeEnum } from '../../types/field.types';
 import {
 	createBooleanField,
 	createDateField,
@@ -9,17 +9,17 @@ import {
 	createReferenceField,
 	createStringField,
 	createTimeField,
-} from '../services/fields.service';
-import TextFieldButton from './fields-cards/TextFieldButton';
-import NumberFieldButton from './fields-cards/NumberFieldButton';
-import BooleanFieldButton from './fields-cards/BooleanFieldButton';
-import DateFieldButton from './fields-cards/DateFieldButton';
-import TimeFieldButton from './fields-cards/TimeFieldButton';
-import DateTimeFieldButton from './fields-cards/DateTimeFieldButton';
-import EnumFieldButton from './fields-cards/EnumFieldButton';
-import ReferenceFieldButton from './fields-cards/ReferenceFieldButton';
-import InputFields from './common/InputFields';
-import { CreateTemplateDto } from '../types/template.dtos';
+} from '../../services/fields.service';
+import TextFieldButton from '../fields-cards/TextFieldButton';
+import NumberFieldButton from '../fields-cards/NumberFieldButton';
+import BooleanFieldButton from '../fields-cards/BooleanFieldButton';
+import DateFieldButton from '../fields-cards/DateFieldButton';
+import TimeFieldButton from '../fields-cards/TimeFieldButton';
+import DateTimeFieldButton from '../fields-cards/DateTimeFieldButton';
+import EnumFieldButton from '../fields-cards/EnumFieldButton';
+import ReferenceFieldButton from '../fields-cards/ReferenceFieldButton';
+import InputFields from '../common/InputFields';
+import { CreateTemplateDto } from '../../types/template.dtos';
 import {
 	FieldErrors,
 	UseFieldArrayAppend,
@@ -109,15 +109,7 @@ const FormBuilderControlPanel = ({
 	};
 
 	return (
-		<Box
-			sx={{
-				height: '100vh',
-				padding: 3,
-				borderLeft: 1,
-				borderLeftColor: 'divider',
-				overflowY: 'auto',
-			}}
-		>
+		<>
 			<Box
 				sx={{
 					paddingBottom: 2,
@@ -163,7 +155,7 @@ const FormBuilderControlPanel = ({
 					)
 				)}
 			</Grid>
-		</Box>
+		</>
 	);
 };
 
