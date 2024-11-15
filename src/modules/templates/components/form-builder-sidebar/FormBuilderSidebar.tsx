@@ -5,28 +5,35 @@ import {
 	UseFormRegister,
 } from 'react-hook-form';
 import { CreateTemplateDto } from '../../types/template.dtos';
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 import FormBuilderControlPanel from './FormBuilderControlPanel';
 import FormBuilderInputDetails from './FormBuilderInputDetails';
 
 interface FormBuilderSidebarProps {
 	submit: (data: CreateTemplateDto) => void;
+	formData: CreateTemplateDto;
 	handleSubmit: UseFormHandleSubmit<CreateTemplateDto>;
 	register: UseFormRegister<CreateTemplateDto>;
 	append: UseFieldArrayAppend<CreateTemplateDto>;
 	errors: FieldErrors<CreateTemplateDto>;
 	sidebarState: { mode: string; selectedButtonIndex: number | null };
-	handleSidebarModeChange: (newMode: string, index: number | null) => void;
+	fieldIndex: number | null;
+	handleSidebarModeChange: (
+		newMode: 'controlPanel' | 'inputDetails',
+		index: number | null
+	) => void;
 }
 
 export default function FormBuilderSidebar({
 	submit,
 	handleSubmit,
+	formData,
 	register,
 	append,
 	errors,
 	sidebarState,
 	handleSidebarModeChange,
+	fieldIndex,
 }: FormBuilderSidebarProps) {
 	return (
 		<Box
@@ -55,21 +62,16 @@ export default function FormBuilderSidebar({
 						errors={errors}
 					/>
 				) : (
-					<>
-						<FormBuilderInputDetails
-							submit={submit}
-							handleSubmit={handleSubmit}
-							setSidebarState={(mode, index) =>
-								handleSidebarModeChange(mode, index ?? null)
-							}
-							errors={errors}
-							register={register}
-						/>
-					</>
+					<FormBuilderInputDetails
+						formData={formData}
+						fieldIndex={fieldIndex!}
+						setSidebarState={(mode, index) =>
+							handleSidebarModeChange(mode, index ?? null)
+						}
+						errors={errors}
+						register={register}
+					/>
 				)}
-				<Button type="submit" variant="contained" color="primary">
-					Submit
-				</Button>
 			</form>
 		</Box>
 	);

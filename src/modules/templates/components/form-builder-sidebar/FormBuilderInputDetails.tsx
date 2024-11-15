@@ -8,176 +8,162 @@ import {
 	Typography,
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import { useState } from 'react';
 import { CreateTemplateDto } from '../../types/template.dtos';
-import {
-	FieldErrors,
-	UseFormHandleSubmit,
-	UseFormRegister,
-} from 'react-hook-form';
+import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FieldType } from '../../types/field.types';
 
 interface FormBuilderInputDetailsProps {
 	register: UseFormRegister<CreateTemplateDto>;
-	submit: (data: CreateTemplateDto) => void;
-	handleSubmit: UseFormHandleSubmit<CreateTemplateDto>;
-	setSidebarState: (mode: string, index?: number | null) => void;
+	fieldIndex: number;
+	formData: CreateTemplateDto;
+	setSidebarState: (
+		mode: 'controlPanel' | 'inputDetails',
+		index?: number | null
+	) => void;
 	errors: FieldErrors<CreateTemplateDto>;
 }
 
 const FormBuilderInputDetails = ({
 	register,
-	submit,
-	handleSubmit,
 	setSidebarState,
+	formData,
+	fieldIndex,
 	errors,
 }: FormBuilderInputDetailsProps) => {
-	const types: string[] = [
-		'Label',
-		'Arabic label',
-		// 'Default value',
-		// 'Form initial value',
-	];
-
-	const [required, setRequired] = useState(false);
-
-	const handleRequiredChange = (
-		event: React.ChangeEvent<HTMLInputElement>
-	) => {
-		setRequired(event.target.checked);
+	const types: {
+		[key in keyof Omit<FieldType, 'camelCaseLabel' | 'type'>]: string;
+	} = {
+		label: 'Label',
+		labelAr: 'Arabic label',
+		required: 'Required',
+		defaultValue: 'Default value',
+		formInitialValue: 'Form initial value',
 	};
 
-	return (
-		<div
-			onSubmit={handleSubmit(submit)}
-			onKeyDown={(e) => {
-				if (e.key === 'Enter') {
-					handleSubmit(submit)();
-				}
-			}}
-		>
-			<Box
-				sx={{
-					paddingBottom: 2,
-					fontSize: 20,
-					fontWeight: 'bold',
-				}}
-			>
-				Element properties
-				<Button onClick={() => setSidebarState('controlPanel')}>
-					<ClearIcon
+	function renderFieldsDetails() {
+		const elements: React.ReactNode[] = [];
+
+		Object.entries(types).forEach(([type, label], i) => {
+			if (formData.fields[fieldIndex].required && type == 'defaultValue')
+				return;
+
+			if (type != 'required') {
+				elements.push(
+					<React.Fragment key={i}>
+						<Typography sx={{ fontWeight: 'bold' }}>
+							{type}
+						</Typography>
+						<TextField
+							{...register(`fields.${fieldIndex}.${type}` as any)}
+							helperText={`The ${label.toLowerCase()} of the field.`}
+							error={Boolean(errors?.fields?.message)}
+							label={label}
+							variant="outlined"
+							size="small"
+							sx={{ width: '100%', marginY: 1 }}
+							FormHelperTextProps={{
+								style: {
+									marginLeft: 0,
+									marginTop: 10,
+								},
+							}}
+						/>
+					</React.Fragment>
+				);
+			}
+
+			if (type == 'required') {
+				elements.push(
+					<Box
+						key="required-switch"
 						sx={(theme) => ({
-							fontSize: 20,
-							marginLeft: 4,
+							border: '1px solid ',
+							padding: 1,
+							paddingY: 1,
+							borderColor: 'grey.400',
+							borderRadius: 1,
+							marginY: 1,
+							width: '100%',
+							height: 100,
+							display: 'flex',
+							alignItems: 'center',
 							...theme.applyStyles('dark', {
-								color: 'white',
+								borderColor: 'grey.700',
 							}),
 						})}
-					/>
-				</Button>
-				<Divider sx={{ marginY: 1 }} />
-				<Box
-					sx={{
-						marginY: 2,
-						fontSize: 18,
-					}}
-				>
-					{(() => {
-						const elements = [];
+					>
+						<Typography
+							component="div"
+							variant="body2"
+							sx={{
+								color: 'text.secondary',
+								marginTop: 1,
+							}}
+						>
+							<Typography
+								sx={(theme) => ({
+									fontWeight: 'bold',
+									color: 'black',
+									...theme.applyStyles('dark', {
+										color: 'white',
+									}),
+								})}
+							>
+								{label}
+							</Typography>
+							The helper text of the field. It will be displayed
+							below the field.
+						</Typography>
 
-						for (let i = 0; i < types.length; i++) {
-							const type = types[i];
-
-							if (required && type === 'Default value') {
-								continue;
+						<Switch
+							color={
+								formData.fields[fieldIndex].required
+									? 'primary'
+									: 'default'
 							}
+							{...register(
+								`fields.${fieldIndex}.required` as any
+							)}
+							checked={formData.fields[fieldIndex].required}
+						/>
+					</Box>
+				);
+			}
+		});
 
-							elements.push(
-								<React.Fragment key={i}>
-									<Typography sx={{ fontWeight: 'bold' }}>
-										{type}
-									</Typography>
-									<TextField
-										{...register}
-										helperText={
-											errors?.fields?.message ||
-											`The ${type} of the field.`
-										}
-										error={Boolean(errors?.fields?.message)}
-										label={type}
-										variant="outlined"
-										size="small"
-										sx={{ width: '100%', marginY: 1 }}
-										FormHelperTextProps={{
-											style: {
-												marginLeft: 0,
-												marginTop: 10,
-											},
-										}}
-									/>
-								</React.Fragment>
-							);
+		return elements;
+	}
 
-							if (i === 1) {
-								elements.push(
-									<Box
-										key="required-switch"
-										sx={(theme) => ({
-											border: '1px solid ',
-											padding: 1,
-											paddingY: 1,
-											borderColor: 'grey.400',
-											borderRadius: 1,
-											marginY: 1,
-											width: '100%',
-											height: 100,
-											display: 'flex',
-											alignItems: 'center',
-											...theme.applyStyles('dark', {
-												borderColor: 'grey.700',
-											}),
-										})}
-									>
-										<Typography
-											component="div"
-											variant="body2"
-											sx={{
-												color: 'text.secondary',
-												marginTop: 1,
-											}}
-										>
-											<Typography
-												sx={(theme) => ({
-													fontWeight: 'bold',
-													color: 'black',
-													...theme.applyStyles(
-														'dark',
-														{
-															color: 'white',
-														}
-													),
-												})}
-											>
-												Required
-											</Typography>
-											The helper text of the field. It
-											will be displayed below the field.
-										</Typography>
-										<Switch
-											color={
-												required ? 'primary' : 'default'
-											}
-											onChange={handleRequiredChange}
-											checked={required}
-										/>
-									</Box>
-								);
-							}
-						}
-						return elements;
-					})()}
-				</Box>
+	return (
+		<Box
+			sx={{
+				paddingBottom: 2,
+				fontSize: 20,
+				fontWeight: 'bold',
+			}}
+		>
+			Element properties
+			<Button onClick={() => setSidebarState('controlPanel')}>
+				<ClearIcon
+					sx={(theme) => ({
+						fontSize: 20,
+						marginLeft: 4,
+						...theme.applyStyles('dark', {
+							color: 'white',
+						}),
+					})}
+				/>
+			</Button>
+			<Divider sx={{ marginY: 1 }} />
+			<Box
+				sx={{
+					marginY: 2,
+					fontSize: 18,
+				}}
+			>
+				{renderFieldsDetails()}
 			</Box>
-		</div>
+		</Box>
 	);
 };
 

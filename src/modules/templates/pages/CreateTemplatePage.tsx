@@ -6,27 +6,28 @@ import { CreateTemplateDto } from '../types/template.dtos';
 import FormBuilderSidebar from '../components/form-builder-sidebar/FormBuilderSidebar';
 import FormBuilderViewer from '../components/FormBuilderViewer';
 import { useState } from 'react';
-import { FieldTypeEnum } from '../types/field.types';
 
-interface CreateTemplatePageProps {
-	data: CreateTemplateDto;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function CreateTemplatePage({ data }: CreateTemplatePageProps) {
-	const [sidebarState, setSidebarState] = useState({
+export default function CreateTemplatePage() {
+	const [sidebarState, setSidebarState] = useState<{
+		mode: 'controlPanel' | 'inputDetails';
+		selectedButtonIndex: null | number;
+	}>({
 		mode: 'controlPanel',
-		selectedButtonIndex: null as number | null,
+		selectedButtonIndex: null,
 	});
 
 	const handleSidebarModeChange = (
-		newMode: string,
+		newMode: 'controlPanel' | 'inputDetails',
 		index: number | null = null
 	) => {
+		if (newMode == 'inputDetails' && index == null)
+			throw Error(
+				'You should provide field index in input details mode.'
+			);
+
 		setSidebarState({
 			mode: newMode,
-			selectedButtonIndex:
-				newMode === 'inputDetails' ? (index ?? null) : null,
+			selectedButtonIndex: index,
 		});
 	};
 
@@ -40,17 +41,11 @@ export default function CreateTemplatePage({ data }: CreateTemplatePageProps) {
 		defaultValues: {
 			name: '',
 			nameAr: '',
-			fields: [
-				{
-					type: FieldTypeEnum.String,
-					required: false,
-					label: '',
-					labelAr: '',
-				},
-			],
+			fields: [],
 		},
 		// resolver: joiResolver(createTemplateSchema),
 	});
+
 	const { append } = useFieldArray<CreateTemplateDto>({
 		control,
 		name: 'fields',
@@ -61,6 +56,7 @@ export default function CreateTemplatePage({ data }: CreateTemplatePageProps) {
 	const submit = (data: CreateTemplateDto) => {
 		console.log(data);
 	};
+
 	return (
 		<>
 			<Grid container spacing={2}>
@@ -75,6 +71,8 @@ export default function CreateTemplatePage({ data }: CreateTemplatePageProps) {
 
 				<Grid size={{ md: 5, lg: 4, xl: 3, xl4: 2 }}>
 					<FormBuilderSidebar
+						formData={formData}
+						fieldIndex={sidebarState.selectedButtonIndex}
 						submit={submit}
 						handleSubmit={handleSubmit}
 						register={register}
