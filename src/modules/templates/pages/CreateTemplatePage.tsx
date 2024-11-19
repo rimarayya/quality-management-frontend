@@ -1,6 +1,6 @@
 import { Grid2 as Grid } from '@mui/material';
-// import createTemplateSchema from '../schemas/create-template.schema';
-// import { joiResolver } from '@hookform/resolvers/joi';
+import createTemplateSchema from '../schemas/create-template.schema';
+import { joiResolver } from '@hookform/resolvers/joi';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { CreateTemplateDto } from '../types/template.dtos';
 import FormBuilderSidebar from '../components/form-builder-sidebar/FormBuilderSidebar';
@@ -43,7 +43,7 @@ export default function CreateTemplatePage() {
 			nameAr: '',
 			fields: [],
 		},
-		// resolver: joiResolver(createTemplateSchema),
+		resolver: joiResolver(createTemplateSchema),
 	});
 
 	const { append } = useFieldArray<CreateTemplateDto>({
@@ -54,8 +54,10 @@ export default function CreateTemplatePage() {
 	const formData = watch();
 
 	const submit = (data: CreateTemplateDto) => {
-		console.log(data);
+		console.log('Form submission data:', data);
 	};
+	console.log('Form Data Fields:', JSON.stringify(formData.fields, null, 2));
+	console.log('Errors on submit:', errors);
 
 	return (
 		<>

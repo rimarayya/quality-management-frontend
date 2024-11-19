@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import { CreateTemplateDto } from '../../types/template.dtos';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { FieldError, FieldErrors, UseFormRegister } from 'react-hook-form';
 import { FieldType } from '../../types/field.types';
 
 interface FormBuilderInputDetailsProps {
@@ -55,12 +55,26 @@ const FormBuilderInputDetails = ({
 						</Typography>
 						<TextField
 							{...register(`fields.${fieldIndex}.${type}` as any)}
-							helperText={`The ${label.toLowerCase()} of the field.`}
-							error={Boolean(errors?.fields?.message)}
+							error={
+								!!errors?.fields?.[fieldIndex]?.[
+									type as keyof (typeof formData.fields)[number]
+								]
+							}
+							helperText={
+								(
+									errors?.fields?.[fieldIndex]?.[
+										type as keyof (typeof formData.fields)[number]
+									] as FieldError
+								)?.message ||
+								`The ${label.toLowerCase()} of the field.`
+							}
 							label={label}
 							variant="outlined"
 							size="small"
-							sx={{ width: '100%', marginY: 1 }}
+							sx={{
+								width: '100%',
+								marginY: 1,
+							}}
 							FormHelperTextProps={{
 								style: {
 									marginLeft: 0,
