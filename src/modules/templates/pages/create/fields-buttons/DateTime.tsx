@@ -1,15 +1,12 @@
 import BrowseGalleryIcon from '@mui/icons-material/BrowseGallery';
-import FieldButton from '../common/FieldButton';
+import FieldButton from '../../../components/FieldButton';
 
-interface DateTimeFieldButtonProps {
+interface DateTimeProps {
 	height: number;
 	iconSize: number;
 }
 
-export default function DateTimeFieldButton({
-	height,
-	iconSize,
-}: DateTimeFieldButtonProps) {
+export default function DateTime({ height, iconSize }: DateTimeProps) {
 	return (
 		<FieldButton
 			Icon={BrowseGalleryIcon}

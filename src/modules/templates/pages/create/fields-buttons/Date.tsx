@@ -1,15 +1,12 @@
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import FieldButton from '../common/FieldButton';
+import FieldButton from '../../../components/FieldButton';
 
-interface DateFieldButtonProps {
+interface DateProps {
 	height: number;
 	iconSize: number;
 }
 
-export default function DateFieldButton({
-	height,
-	iconSize,
-}: DateFieldButtonProps) {
+export default function Date({ height, iconSize }: DateProps) {
 	return (
 		<FieldButton
 			Icon={CalendarMonthOutlinedIcon}

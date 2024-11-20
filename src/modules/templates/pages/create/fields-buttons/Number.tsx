@@ -1,15 +1,12 @@
 import PinOutlinedIcon from '@mui/icons-material/PinOutlined';
-import FieldButton from '../common/FieldButton';
+import FieldButton from '../../../components/FieldButton';
 
-interface NumberFieldButtonProps {
+interface NumberProps {
 	height: number;
 	iconSize: number;
 }
 
-export default function NumberFieldButton({
-	height,
-	iconSize,
-}: NumberFieldButtonProps) {
+export default function Number({ height, iconSize }: NumberProps) {
 	return (
 		<FieldButton
 			Icon={PinOutlinedIcon}

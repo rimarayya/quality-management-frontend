@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import { UseFormRegister } from 'react-hook-form';
-import { CreateTemplateDto } from '../../types/template.dtos';
+import { CreateTemplateDto } from '../types/template.dtos';
 
 interface InputFieldsProps {
 	label: string;

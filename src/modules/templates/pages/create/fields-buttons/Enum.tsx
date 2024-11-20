@@ -1,15 +1,12 @@
 import ListIcon from '@mui/icons-material/List';
-import FieldButton from '../common/FieldButton';
+import FieldButton from '../../../components/FieldButton';
 
-interface EnumFieldButtonProps {
+interface EnumProps {
 	height: number;
 	iconSize: number;
 }
 
-export default function EnumFieldButton({
-	height,
-	iconSize,
-}: EnumFieldButtonProps) {
+export default function Enum({ height, iconSize }: EnumProps) {
 	return (
 		<FieldButton
 			Icon={ListIcon}

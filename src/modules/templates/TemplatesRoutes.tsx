@@ -1,9 +1,9 @@
 import { Route, Routes } from 'react-router-dom';
 import TemplatesPage from './pages/TemplatesPage';
-import ViewTemplatePage from './pages/ViewTemplatePage';
-import UpdateTemplatePage from './pages/UpdateTemplatePage';
-import CreateTemplatePage from './pages/CreateTemplatePage';
-import DeleteTemplatePage from './pages/DeleteTemplatePage';
+import ViewTemplatePage from './pages/view/ViewTemplatePage';
+import UpdateTemplatePage from './pages/update/UpdateTemplatePage';
+import CreateTemplatePage from './pages/create/CreateTemplatePage';
+import DeleteTemplatePage from './pages/delete/DeleteTemplatePage';
 import NotFoundPage from '../common/pages/errors/NotFoundPage';
 
 export default function TemplatesRouters() {

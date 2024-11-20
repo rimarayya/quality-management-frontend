@@ -1,11 +1,12 @@
 import { Grid2 as Grid } from '@mui/material';
-import createTemplateSchema from '../schemas/create-template.schema';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { useFieldArray, useForm } from 'react-hook-form';
-import { CreateTemplateDto } from '../types/template.dtos';
-import FormBuilderSidebar from '../components/form-builder-sidebar/FormBuilderSidebar';
-import FormBuilderViewer from '../components/FormBuilderViewer';
+import { CreateTemplateDto } from '../../types/template.dtos';
+import Sidebar from './sidebar/Sidebar';
+
 import { useState } from 'react';
+import Viewer from './viewer/Viewer';
+import createTemplateSchema from '../../schemas/create-template.schema';
 
 export default function CreateTemplatePage() {
 	const [sidebarState, setSidebarState] = useState<{
@@ -63,7 +64,7 @@ export default function CreateTemplatePage() {
 		<>
 			<Grid container spacing={2}>
 				<Grid size={{ md: 7, lg: 8, xl: 9, xl4: 10 }}>
-					<FormBuilderViewer
+					<Viewer
 						data={formData}
 						onButtonClick={(index) =>
 							handleSidebarModeChange('inputDetails', index)
@@ -72,7 +73,7 @@ export default function CreateTemplatePage() {
 				</Grid>
 
 				<Grid size={{ md: 5, lg: 4, xl: 3, xl4: 2 }}>
-					<FormBuilderSidebar
+					<Sidebar
 						formData={formData}
 						fieldIndex={sidebarState.selectedButtonIndex}
 						submit={submit}

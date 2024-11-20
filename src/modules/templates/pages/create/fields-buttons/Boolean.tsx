@@ -1,15 +1,12 @@
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import FieldButton from '../common/FieldButton';
+import FieldButton from '../../../components/FieldButton';
 
-interface BooleanFieldButtonProps {
+interface BooleanProps {
 	height: number;
 	iconSize: number;
 }
 
-export default function BooleanFieldButton({
-	height,
-	iconSize,
-}: BooleanFieldButtonProps) {
+export default function Boolean({ height, iconSize }: BooleanProps) {
 	return (
 		<FieldButton
 			Icon={CheckBoxIcon}

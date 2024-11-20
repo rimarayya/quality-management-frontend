@@ -1,16 +1,13 @@
 import { Box, Button, Switch } from '@mui/material';
-import { useThemeStore } from '../../common/stores/themeStore';
-import { CreateTemplateDto } from '../types/template.dtos';
+import { useThemeStore } from '../../../../common/stores/themeStore';
+import { CreateTemplateDto } from '../../../types/template.dtos';
 
-interface FormBuilderViewerProps {
+interface ViewerProps {
 	data: CreateTemplateDto;
 	onButtonClick: (index: number) => void;
 }
 
-export default function FormBuilderViewer({
-	data,
-	onButtonClick,
-}: FormBuilderViewerProps) {
+export default function Viewer({ data, onButtonClick }: ViewerProps) {
 	const { isLight, toggleTheme } = useThemeStore();
 
 	return (

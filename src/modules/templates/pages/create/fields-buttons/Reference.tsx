@@ -1,15 +1,12 @@
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import FieldButton from '../common/FieldButton';
+import FieldButton from '../../../components/FieldButton';
 
-interface ReferenceFieldButtonProps {
+interface ReferenceProps {
 	height: number;
 	iconSize: number;
 }
 
-export default function ReferenceFieldButton({
-	height,
-	iconSize,
-}: ReferenceFieldButtonProps) {
+export default function Reference({ height, iconSize }: ReferenceProps) {
 	return (
 		<FieldButton
 			Icon={LibraryBooksIcon}

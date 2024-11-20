@@ -1,15 +1,12 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import FieldButton from '../common/FieldButton';
+import FieldButton from '../../../components/FieldButton';
 
-interface TimeFieldButtonProps {
+interface TimeProps {
 	height: number;
 	iconSize: number;
 }
 
-export default function TimeFieldButton({
-	height,
-	iconSize,
-}: TimeFieldButtonProps) {
+export default function Time({ height, iconSize }: TimeProps) {
 	return (
 		<FieldButton
 			Icon={AccessTimeIcon}

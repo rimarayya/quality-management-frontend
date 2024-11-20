@@ -1,5 +1,5 @@
 import { Box, Grid2 as Grid } from '@mui/material';
-import { FieldTypeEnum } from '../../types/field.types';
+import { FieldTypeEnum } from '../../../types/field.types';
 import {
 	createBooleanField,
 	createDateField,
@@ -9,72 +9,72 @@ import {
 	createReferenceField,
 	createStringField,
 	createTimeField,
-} from '../../services/fields.service';
-import TextFieldButton from '../fields-cards/TextFieldButton';
-import NumberFieldButton from '../fields-cards/NumberFieldButton';
-import BooleanFieldButton from '../fields-cards/BooleanFieldButton';
-import DateFieldButton from '../fields-cards/DateFieldButton';
-import TimeFieldButton from '../fields-cards/TimeFieldButton';
-import DateTimeFieldButton from '../fields-cards/DateTimeFieldButton';
-import EnumFieldButton from '../fields-cards/EnumFieldButton';
-import ReferenceFieldButton from '../fields-cards/ReferenceFieldButton';
-import InputFields from '../common/InputFields';
-import { CreateTemplateDto } from '../../types/template.dtos';
+} from '../../../services/fields.service';
+import Text from '../fields-buttons/Text';
+import Number from '../fields-buttons/Number';
+import Boolean from '../fields-buttons/Boolean';
+import Date from '../fields-buttons/Date';
+import Time from '../fields-buttons/Time';
+import DateTime from '../fields-buttons/DateTime';
+import Enum from '../fields-buttons/Enum';
+import Reference from '../fields-buttons/Reference';
+import { CreateTemplateDto } from '../../../types/template.dtos';
 import {
 	FieldErrors,
 	UseFieldArrayAppend,
 	UseFormRegister,
 } from 'react-hook-form';
+import InputFields from '../../../components/InputFields';
 
-interface FormBuilderControlPanelProps {
+interface ControlPanelProps {
 	register: UseFormRegister<CreateTemplateDto>;
 	append: UseFieldArrayAppend<CreateTemplateDto>;
 	errors: FieldErrors<CreateTemplateDto>;
 }
 
-const FormBuilderControlPanel = ({
+export default function ControlPanel({
 	register,
 	append,
 	errors,
-}: FormBuilderControlPanelProps) => {
+}: ControlPanelProps) {
 	const ButtonComponents = [
 		{
-			component: TextFieldButton,
+			component: Text,
 			name: 'Text Field',
 			type: FieldTypeEnum.String,
 		},
 		{
-			component: NumberFieldButton,
+			component: Number,
 			name: 'Number Field',
 			type: FieldTypeEnum.Number,
 		},
 		{
-			component: BooleanFieldButton,
+			component: Boolean,
 			name: 'Boolean Field',
 			type: FieldTypeEnum.Boolean,
 		},
 		{
-			component: DateFieldButton,
+			component: Date,
 			name: 'Date Field',
 			type: FieldTypeEnum.Date,
 		},
 		{
-			component: TimeFieldButton,
+			component: Time,
 			name: 'Time Field',
 			type: FieldTypeEnum.Time,
 		},
 		{
-			component: DateTimeFieldButton,
+			component: DateTime,
 			name: 'DateTime Field',
 			type: FieldTypeEnum.Datetime,
 		},
 		{
-			component: EnumFieldButton,
+			component: Enum,
 			name: 'Enum Field',
 			type: FieldTypeEnum.Enum,
 		},
 		{
-			component: ReferenceFieldButton,
+			component: Reference,
 			name: 'Reference Field',
 			type: FieldTypeEnum.Reference,
 		},
@@ -157,6 +157,4 @@ const FormBuilderControlPanel = ({
 			</Grid>
 		</>
 	);
-};
-
-export default FormBuilderControlPanel;
+}

@@ -4,12 +4,12 @@ import {
 	UseFormHandleSubmit,
 	UseFormRegister,
 } from 'react-hook-form';
-import { CreateTemplateDto } from '../../types/template.dtos';
+import { CreateTemplateDto } from '../../../types/template.dtos';
 import { Box } from '@mui/material';
-import FormBuilderControlPanel from './FormBuilderControlPanel';
-import FormBuilderInputDetails from './FormBuilderInputDetails';
+import ControlPanel from './ControlPanel';
+import InputDetails from './InputDetails';
 
-interface FormBuilderSidebarProps {
+interface SidebarProps {
 	submit: (data: CreateTemplateDto) => void;
 	formData: CreateTemplateDto;
 	handleSubmit: UseFormHandleSubmit<CreateTemplateDto>;
@@ -24,7 +24,7 @@ interface FormBuilderSidebarProps {
 	) => void;
 }
 
-export default function FormBuilderSidebar({
+export default function Sidebar({
 	submit,
 	handleSubmit,
 	formData,
@@ -34,7 +34,7 @@ export default function FormBuilderSidebar({
 	sidebarState,
 	handleSidebarModeChange,
 	fieldIndex,
-}: FormBuilderSidebarProps) {
+}: SidebarProps) {
 	return (
 		<Box
 			sx={{
@@ -56,13 +56,13 @@ export default function FormBuilderSidebar({
 				}}
 			>
 				{sidebarState.mode === 'controlPanel' ? (
-					<FormBuilderControlPanel
+					<ControlPanel
 						register={register}
 						append={append}
 						errors={errors}
 					/>
 				) : (
-					<FormBuilderInputDetails
+					<InputDetails
 						formData={formData}
 						fieldIndex={fieldIndex!}
 						setSidebarState={(mode, index) =>

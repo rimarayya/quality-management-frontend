@@ -1,15 +1,12 @@
 import TextFieldsIcon from '@mui/icons-material/TextFields';
-import FieldButton from '../common/FieldButton';
+import FieldButton from '../../../components/FieldButton';
 
-interface TextFieldButtonProps {
+interface TextProps {
 	height: number;
 	iconSize: number;
 }
 
-export default function TextFieldButton({
-	height,
-	iconSize,
-}: TextFieldButtonProps) {
+export default function Text({ height, iconSize }: TextProps) {
 	return (
 		<FieldButton
 			Icon={TextFieldsIcon}

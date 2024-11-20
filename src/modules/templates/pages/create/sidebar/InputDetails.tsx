@@ -8,11 +8,11 @@ import {
 	Typography,
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
-import { CreateTemplateDto } from '../../types/template.dtos';
+import { CreateTemplateDto } from '../../../types/template.dtos';
 import { FieldError, FieldErrors, UseFormRegister } from 'react-hook-form';
-import { FieldType } from '../../types/field.types';
+import { FieldType } from '../../../types/field.types';
 
-interface FormBuilderInputDetailsProps {
+interface InputDetailsProps {
 	register: UseFormRegister<CreateTemplateDto>;
 	fieldIndex: number;
 	formData: CreateTemplateDto;
@@ -23,13 +23,13 @@ interface FormBuilderInputDetailsProps {
 	errors: FieldErrors<CreateTemplateDto>;
 }
 
-const FormBuilderInputDetails = ({
+export default function InputDetails({
 	register,
 	setSidebarState,
 	formData,
 	fieldIndex,
 	errors,
-}: FormBuilderInputDetailsProps) => {
+}: InputDetailsProps) {
 	const types: {
 		[key in keyof Omit<FieldType, 'camelCaseLabel' | 'type'>]: string;
 	} = {
@@ -179,6 +179,4 @@ const FormBuilderInputDetails = ({
 			</Box>
 		</Box>
 	);
-};
-
-export default FormBuilderInputDetails;
+}
