@@ -51,7 +51,7 @@ export default function InputDetails({
 				elements.push(
 					<React.Fragment key={i}>
 						<Typography sx={{ fontWeight: 'bold' }}>
-							{type}
+							{label}
 						</Typography>
 						<TextField
 							{...register(`fields.${fieldIndex}.${type}` as any)}
@@ -156,18 +156,33 @@ export default function InputDetails({
 				fontWeight: 'bold',
 			}}
 		>
-			Element properties
-			<Button onClick={() => setSidebarState('controlPanel')}>
-				<ClearIcon
-					sx={(theme) => ({
-						fontSize: 20,
-						marginLeft: 4,
-						...theme.applyStyles('dark', {
-							color: 'white',
-						}),
-					})}
-				/>
-			</Button>
+			<Box
+				sx={{
+					display: 'flex',
+					justifyContent: 'space-between',
+					alignItems: 'center',
+				}}
+			>
+				Element properties
+				<Button
+					onClick={() => setSidebarState('controlPanel')}
+					sx={{
+						'&:hover': {
+							backgroundColor: 'transparent',
+						},
+					}}
+				>
+					<ClearIcon
+						sx={(theme) => ({
+							fontSize: 20,
+							marginLeft: 4,
+							...theme.applyStyles('dark', {
+								color: 'white',
+							}),
+						})}
+					/>
+				</Button>
+			</Box>
 			<Divider sx={{ marginY: 1 }} />
 			<Box
 				sx={{

@@ -1,11 +1,11 @@
 import { create } from 'zustand';
 
-interface ICounterStore {
+interface ThemeStore {
 	isLight: boolean;
 	toggleTheme: () => void;
 }
 
-export const useThemeStore = create<ICounterStore>((set) => ({
+export const useThemeStore = create<ThemeStore>((set) => ({
 	isLight: true,
 	toggleTheme: () => set((state) => ({ isLight: !state.isLight })),
 }));
