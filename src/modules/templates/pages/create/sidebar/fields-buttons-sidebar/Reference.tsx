@@ -1,5 +1,5 @@
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import FieldButton from '../../../components/FieldButton';
+import FieldButton from '../../../../components/FieldButton';
 
 interface ReferenceProps {
 	height: number;

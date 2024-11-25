@@ -1,5 +1,5 @@
 import TextFieldsIcon from '@mui/icons-material/TextFields';
-import FieldButton from '../../../components/FieldButton';
+import FieldButton from '../../../../components/FieldButton';
 
 interface TextProps {
 	height: number;

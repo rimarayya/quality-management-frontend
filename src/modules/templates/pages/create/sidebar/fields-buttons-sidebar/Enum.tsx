@@ -1,5 +1,5 @@
 import ListIcon from '@mui/icons-material/List';
-import FieldButton from '../../../components/FieldButton';
+import FieldButton from '../../../../components/FieldButton';
 
 interface EnumProps {
 	height: number;

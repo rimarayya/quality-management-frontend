@@ -1,5 +1,5 @@
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
-import FieldButton from '../../../components/FieldButton';
+import FieldButton from '../../../../components/FieldButton';
 
 interface BooleanProps {
 	height: number;

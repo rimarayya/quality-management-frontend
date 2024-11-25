@@ -1,5 +1,5 @@
 import PinOutlinedIcon from '@mui/icons-material/PinOutlined';
-import FieldButton from '../../../components/FieldButton';
+import FieldButton from '../../../../components/FieldButton';
 
 interface NumberProps {
 	height: number;

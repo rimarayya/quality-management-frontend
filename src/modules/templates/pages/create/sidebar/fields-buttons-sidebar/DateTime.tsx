@@ -1,5 +1,5 @@
 import BrowseGalleryIcon from '@mui/icons-material/BrowseGallery';
-import FieldButton from '../../../components/FieldButton';
+import FieldButton from '../../../../components/FieldButton';
 
 interface DateTimeProps {
 	height: number;

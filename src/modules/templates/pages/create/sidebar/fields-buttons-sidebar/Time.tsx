@@ -1,5 +1,5 @@
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import FieldButton from '../../../components/FieldButton';
+import FieldButton from '../../../../components/FieldButton';
 
 interface TimeProps {
 	height: number;

@@ -1,4 +1,4 @@
-import { Box, Grid2 as Grid } from '@mui/material';
+import { Box, Grid2 as Grid, Switch } from '@mui/material';
 import { FieldTypeEnum } from '../../../types/field.types';
 import {
 	createBooleanField,
@@ -10,14 +10,14 @@ import {
 	createStringField,
 	createTimeField,
 } from '../../../services/fields.service';
-import Text from '../fields-buttons/Text';
-import Number from '../fields-buttons/Number';
-import Boolean from '../fields-buttons/Boolean';
-import Date from '../fields-buttons/Date';
-import Time from '../fields-buttons/Time';
-import DateTime from '../fields-buttons/DateTime';
-import Enum from '../fields-buttons/Enum';
-import Reference from '../fields-buttons/Reference';
+import Text from './fields-buttons-sidebar/Text';
+import Number from './fields-buttons-sidebar/Number';
+import Boolean from './fields-buttons-sidebar/Boolean';
+import Date from './fields-buttons-sidebar/Date';
+import Time from './fields-buttons-sidebar/Time';
+import DateTime from './fields-buttons-sidebar/DateTime';
+import Enum from './fields-buttons-sidebar/Enum';
+import Reference from './fields-buttons-sidebar/Reference';
 import { CreateTemplateDto } from '../../../types/template.dtos';
 import {
 	FieldErrors,
@@ -25,6 +25,7 @@ import {
 	UseFormRegister,
 } from 'react-hook-form';
 import InputFields from '../../../components/InputFields';
+import { useThemeStore } from '../../../../common/stores/themeStore';
 
 interface ControlPanelProps {
 	register: UseFormRegister<CreateTemplateDto>;
@@ -37,6 +38,8 @@ export default function ControlPanel({
 	append,
 	errors,
 }: ControlPanelProps) {
+	const { isLight, toggleTheme } = useThemeStore();
+
 	const ButtonComponents = [
 		{
 			component: Text,
@@ -115,11 +118,20 @@ export default function ControlPanel({
 					paddingBottom: 2,
 					fontSize: 20,
 					fontWeight: 'bold',
+					display: 'flex',
+					alignItems: 'center',
+					justifyContent: 'space-between',
 				}}
 			>
 				Form
+				<Box>
+					<Switch
+						color="default"
+						onChange={toggleTheme}
+						checked={!isLight}
+					/>
+				</Box>
 			</Box>
-
 			<InputFields
 				label="Name"
 				register={register}

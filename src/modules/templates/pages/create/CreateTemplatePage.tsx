@@ -47,7 +47,7 @@ export default function CreateTemplatePage() {
 		resolver: joiResolver(createTemplateSchema),
 	});
 
-	const { append } = useFieldArray<CreateTemplateDto>({
+	const { append, remove } = useFieldArray<CreateTemplateDto>({
 		control,
 		name: 'fields',
 	});
@@ -69,6 +69,7 @@ export default function CreateTemplatePage() {
 						onButtonClick={(index) =>
 							handleSidebarModeChange('inputDetails', index)
 						}
+						onDeleteField={remove}
 					/>
 				</Grid>
 
