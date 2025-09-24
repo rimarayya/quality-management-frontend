@@ -34,7 +34,7 @@ This project is built with **Vite**, **React**, and **TypeScript** to provide a 
 2. **Move to the project file** :
 
     ```bash
-    cd Quality-Management-Frontend
+    cd quality-management-frontend
     ```
 
 3. **Install dependencies**:
