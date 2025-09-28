@@ -3,7 +3,6 @@
 A modern web frontend for managing and tracking quality management processes.  
 This project is built with **Vite**, **React**, and **TypeScript** to provide a fast, scalable, and developer-friendly experience.
 
----
 
 ## 🚀 Features
 
@@ -13,7 +12,6 @@ This project is built with **Vite**, **React**, and **TypeScript** to provide a 
 -   🎨 Prettier + ESLint for consistent code style
 -   🔒 Git hooks via Husky for code quality checks
 
----
 
 ## 🛠️ Tech Stack
 
@@ -22,7 +20,6 @@ This project is built with **Vite**, **React**, and **TypeScript** to provide a 
 -   [ESLint](https://eslint.org/) & [Prettier](https://prettier.io/)
 -   [Husky](https://typicode.github.io/husky) for git hooks
 
----
 
 ## 🚀 Getting Started
 
@@ -59,7 +56,6 @@ This project is built with **Vite**, **React**, and **TypeScript** to provide a 
     npm run build
     ```
 
----
 
 ## 📸 Screenshots
 
@@ -67,7 +63,6 @@ This project is built with **Vite**, **React**, and **TypeScript** to provide a 
 
 ![Light Mode](./src/modules/screenshots/lightMode.png)
 
----
 
 ## 📄 License
 
